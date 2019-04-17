@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# to use run `source <(curl -s https://raw.githubusercontent.com/cynixx3/third-party-miner-installer-for-ethos/master/miner-manager) miner action` Where the miner is the branch in the repo and the actions are install, update, or revert
-# IE `source <(curl -s https://raw.githubusercontent.com/cynixx3/third-party-miner-installer-for-ethos/master/miner-manager) phoenixminer install`
+# to use run `source <(curl -s https://raw.githubusercontent.com/Virosa/third-party-miner-installer-for-ethos/master/miner-manager) miner action` Where the miner is the branch in the repo and the actions are install, update, or revert
+# IE `source <(curl -s https://raw.githubusercontent.com/Virosa/third-party-miner-installer-for-ethos/master/miner-manager) phoenixminer install`
 # Any setting changes to this should be made to the miner.settings file in the miners branch of this repo
 
 MINER_BRANCH="$1"
@@ -18,7 +18,7 @@ ALLOW="$(cat /opt/ethos/etc/allow.file)"
 
 # Default miner.settings
 TMP_DIR="/tmp/newminer"
-GIT_USER_REPO="cynixx3/third-party-miner-installer-for-ethos"
+GIT_USER_REPO="Virosa/third-party-miner-installer-for-ethos"
 #RELEASE_SHASUM="sha256sum of archive"
 #DEPENDS="URL URL"
 
@@ -119,7 +119,7 @@ f.PREPETHOS(){
     exit 14
   fi
   echo "Download and unpack files needed by ethOS"
-  if ! git clone https://github.com/cynixx3/third-party-miner-installer-for-ethos.git -b "$MINER_BRANCH" ; then
+  if ! git clone https://github.com/Virosa/third-party-miner-installer-for-ethos.git -b "$MINER_BRANCH" ; then
     echo "git clone download failed. Please check your firewall or git access and try again."
     exit 15
   fi 
@@ -169,7 +169,7 @@ f.REVERT(){
     echo "Unable to revert, stock files are not ready for your miner version. Please try \`sudo ethos-update reupdate\`"
     exit 16
   fi
-  if ! git clone https://github.com/cynixx3/third-party-miner-installer-for-ethos.git -b ethos ; then
+  if ! git clone https://github.com/Virosa/third-party-miner-installer-for-ethos.git -b ethos ; then
     echo "git clone download failed. Please check your firewall or git access and try again."
     exit 17
   fi 
@@ -238,11 +238,11 @@ Usage $CMD [ Miner ] ( install | update | revert )
 Miners Available:
 ${AVAILABLE_MINERS[@]}" | sed -E 's/ +"name": "([a-z0-9\-]+?)", ?/ \1\n/g'
 }
-mapfile -t AVAILABLE_MINERS < <(curl "$GIT_LOGIN" -s https://api.github.com/repos/cynixx3/third-party-miner-installer-for-ethos/branches | grep name | grep -Ev '(ethos|master)')
+mapfile -t AVAILABLE_MINERS < <(curl "$GIT_LOGIN" -s https://api.github.com/repos/Virosa/third-party-miner-installer-for-ethos/branches | grep name | grep -Ev '(ethos|master)')
 
 # TODO add logging
 if [ "$#" -ne "2" ] ; then
-  f.HELP "Wrong number of arguments, must be 2 arguments miner and action, please refer to https://github.com/cynixx3/third-party-miner-installer-for-ethos"
+  f.HELP "Wrong number of arguments, must be 2 arguments miner and action, please refer to https://github.com/Virosa/third-party-miner-installer-for-ethos"
   exit 1
 elif ! [[ "${AVAILABLE_MINERS[@]}" == *"\"$MINER_BRANCH\""* ]] ; then
   f.HELP "Invalid miner selected, Please choose from the list below"
@@ -250,7 +250,7 @@ elif ! [[ "${AVAILABLE_MINERS[@]}" == *"\"$MINER_BRANCH\""* ]] ; then
 fi
 
 # Get miner settings
-source <(curl "$GIT_LOGIN" -s "https://raw.githubusercontent.com/cynixx3/third-party-miner-installer-for-ethos/$MINER_BRANCH/miner.settings")
+source <(curl "$GIT_LOGIN" -s "https://raw.githubusercontent.com/Virosa/third-party-miner-installer-for-ethos/$MINER_BRANCH/miner.settings")
 
 if [ -d "$TMP_DIR" ] ; then rm -rf "$TMP_DIR" ; fi
 echo "Move to a temporary work space"
