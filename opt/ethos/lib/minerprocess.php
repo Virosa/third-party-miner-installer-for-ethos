@@ -993,7 +993,7 @@ function start_miner()
 			$mine_with = "-d $devices";
 		}
 
-		if(!preg_match("/(-a|--algo)/",$flags)) {
+		if(!preg_match("/(-a[\s]|--algo)/",$flags)) {
 			$flags .= " --algo cnr ";
 		}
 
@@ -1003,7 +1003,7 @@ function start_miner()
 			$pools .= " -o $proxypool2 -u $proxywallet$worker -p $poolpass2 ";
 		}
 		
-		$extraflags = "--api_listen 4028";
+		$extraflags = "--api_listen 4028 --bus_reorder";
 	}
 
 	/*******************************
