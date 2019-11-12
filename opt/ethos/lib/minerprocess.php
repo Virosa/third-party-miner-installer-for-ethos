@@ -1106,7 +1106,7 @@ function start_miner()
 	                break;
 	            case "c29":
 	            case "cuckaroo29":
-	                $stratum = "cuckaroo29";
+	                $stratum = "cuckaroo29d";
 	                break;
 	            case "aeternity":
 	                $stratum = "aeternity";
@@ -1130,7 +1130,7 @@ function start_miner()
 	        }
 	        $flags = str_replace("--stratum " . $coinstratum, "", $flags);
 	    } else {
-	        $stratum = "cuckaroo29";
+	        $stratum = "cuckaroo29d";
 	    }
 	    if($namedisabled != "disabled"){
 	        if((preg_match("/(sparkpool.com|grinmint.com)/",$proxypool1)) && (preg_match("/(cuckaroo29|cuckatoo31)/", $stratum))) {
