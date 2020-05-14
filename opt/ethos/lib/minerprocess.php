@@ -1130,7 +1130,7 @@ function start_miner()
 	        }
 	        $flags = str_replace("--stratum " . $coinstratum, "", $flags);
 	    } else {
-	        $stratum = "cuckaroo29d";
+	        $stratum = "raven";
 	    }
 	    if($namedisabled != "disabled"){
 	        if((preg_match("/(sparkpool.com|grinmint.com)/",$proxypool1)) && (preg_match("/(cuckaroo29|cuckatoo31)/", $stratum))) {
